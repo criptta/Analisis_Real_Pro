@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Real I | Hugo Lira</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <header class="marquesina-uni">
+        <div class="logo-container">
+            <img src="uacm.png" alt="Logo Universidad" class="uni-logo">
+        </div>
+        <div class="texto-container">
+            <span class="uni-nombre">Universidad Autónoma de la Ciudad de México | plantel Casa Libertad | Modelación matemática</span>
+            <br><span class="uni-lema">Nada humano me es ajeno</span>
+        </div>
+    </header>
+
+    <nav class="sidebar">
+    <h2 class="sidebar-titulo">Materia: Análisis Real I<br>Estudiante: Hugo Lira<br>Profesor: Felipe Alfaro</h2>
+    <h2 class="sidebar-subtitulo">Contenido</h2>
+    <ul class="lista-menu">
+        <li>
+            <div class="menu-item-wrapper">
+                <a href="#introduccion" class="link-menu">Sucesiones y Series</a>
+                <button id="toggle-intro" class="boton-desplegar">▼</button>
+            </div>
+            <ul id="sub-intro" class="sub-menu" style="display: none;">
+                <li><a href="#convergencia-seccion" class="link-sub-menu">Sucesiones Convergentes</a></li>
+                <li><a href="#subsucesiones-seccion" class="link-sub-menu">Subsucesiones</a></li>
+                <li><a href="#cauchy-seccion" class="link-sub-menu">Sucesiones de Cauchy</a></li>
+            </ul>
+        </li>
+        <li><a href="#definiciones" class="link-menu">Definiciones</a></li>
+        <li><a href="#graficas" class="link-menu">Visualizaciones</a></li>
+        <li><a href="#seccion-tareas" class="link-menu"><span style="color: var(--acento-azul);">📝</span> Tareas</a></li>
+        <li><a href="#glosario" class="link-menu enlace-especial">Glosario</a></li>
+    </ul>
+</nav>
+
+    <main class="content">
+        <section id="introduccion" class="seccion-intro"> 
+            <h1 class="titulo-capitulo">Sucesiones y Series Numéricas</h1>
+            <p class="texto-intro">
+                En los capítulos anteriores establecimos la naturaleza estática de los números reales. Ahora, daremos paso al movimiento. El estudio de las <a href="#glosario-sucesion" class="boton-glosario">sucesiones</a> es, en esencia, el estudio del comportamiento al infinito y la herramienta fundamental para comprender la <a href="#glosario-continuidad" class="boton-glosario">continuidad</a> y la <a href="#glosario-diferenciacion" class="boton-glosario">diferenciación</a>.
+            </p>
+
+            <h2 class="titulo-seccion">El Concepto de Convergencia</h2>
+            <p class="texto-cuerpo">
+                Como bien señala <strong>Walter Rudin</strong>, <span class="texto-resaltado">una sucesión \( \{p_n\} \) en un espacio métrico \( X \) converge si existe un punto \( p \in X \) tal que los términos de la sucesión se "acumulan" arbitrariamente cerca de él.</span>
+            </p>
+        </section>
+
+        <section id="convergencia-seccion" class="seccion-libro">
+            <h2 class="titulo-seccion">Sucesiones Convergentes</h2>
+            <div class="caja-teorema">
+                <strong class="titulo-teorema">Definición</strong>
+                <p class="texto-definicion">
+                    Se dice que una sucesión \( \{p_n\} \) en un espacio métrico \( X \) converge si hay un punto \( p \in X \) con las siguientes propiedades: para cada \( \epsilon > 0 \), existe un número entero \( N \) tal que \( n \geq N \) implica que \( d(p_n, p) < \epsilon \).
+                </p>
+                <div class="formula-math">$$\lim_{n \to \infty} p_n = p$$</div>
+            </div>
+            
+           <div class="caja-teorema">
+    <strong class="titulo-teorema">Teorema 3.2</strong>
+    <ul class="lista-teorema">
+        <li><strong>(a)</strong> \(\{p_n\}\) converge hacia \(p\) ssi toda vecindad de \(p\) contiene a todos los términos salvo un número finito.</li>
+        <li><strong>(b)</strong> Si \(p\) y \(p'\) son límites de la misma sucesión, entonces \(p = p'\).</li>
+        <li><strong>(c)</strong> Toda sucesión convergente es acotada.</li>
+        <li><strong>(d)</strong> Si \(p\) es punto límite de \(E \subset X\), existe una sucesión en \(E\) que converge a \(p\).</li>
+    </ul>
+</div>
+        </section>
+        
+        <section id="ejemplo-convergencia" class="seccion-libro">
+            <h3 class="titulo-ejemplo">Ejemplo visto en la clase del profesor Alfaro</h3>
+            <div class="caja-ejemplo">
+                <p class="texto-cuerpo">Demostrar \(\lim_{n \to \infty} \frac{1}{n} = 0\): Para todo \(\epsilon > 0\), existe \(N > 1/\epsilon\) tal que para \(n \geq N\), \(|\frac{1}{n} - 0| < \epsilon\).</p>
+            </div>
+        </section>
+
+        <section id="subsucesiones-seccion" class="seccion-libro">
+            <hr class="linea-divisoria">
+            <h2 class="titulo-seccion">Subsucesiones</h2>
+            <div class="caja-teorema">
+                <strong class="titulo-teorema">Definición</strong>
+                <p class="texto-definicion">
+                    Dada \( \{p_n\} \), una sucesión \( \{p_{n_k}\} \) con \( n_1 < n_2 < \dots \) se llama <strong>subsucesión</strong>. Si converge, su límite es <strong>límite subsecuencial</strong>. \( \{p_n\} \) converge a \( p \) ssi toda subsucesión converge a \( p \).
+                </p>
+            </div>
+            
+            <div class="caja-teorema-lista">
+                <strong class="titulo-teorema">Teorema (Bolzano-Weierstrass)</strong>
+                <ul class="lista-teorema">
+                    <li><strong>(a)</strong> En espacio compacto \(X\), toda sucesión tiene subsucesión convergente.</li>
+                    <li><strong>(b)</strong> Toda sucesión acotada en \(\mathbb{R}^k\) tiene subsucesión convergente.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="cauchy-seccion" class="seccion-libro">
+            <hr class="linea-divisoria">
+            <h2 class="titulo-seccion">Sucesiones de Cauchy</h2>
+            <p class="texto-cuerpo">
+                A diferencia de la convergencia estándar, donde necesitamos conocer el límite de antemano, el concepto de Cauchy nos permite analizar el comportamiento de los términos entre sí.
+            </p>
+            <div class="caja-teorema">
+                <strong class="titulo-teorema">Definición 3.8</strong>
+                <p class="texto-definicion">
+                    Se dice que una sucesión \( \{p_n\} \) en un espacio métrico \( X \) es una <strong>sucesión de Cauchy</strong> si para cada \( \epsilon > 0 \), existe un número entero \( N \) tal que \( n, m \geq N \) implica que:
+                </p>
+                <div class="formula-math">$$d(p_n, p_m) < \epsilon$$</div>
+            </div>
+        </section>
+
+        
+<section id="seccion-tareas" class="seccion-libro">
+    <hr class="linea-divisoria">
+    <h2 class="titulo-seccion">Sección de Tareas</h2>
+
+    <div class="caja-tarea">
+        <strong class="titulo-tarea">Ejercicio 1: Análisis de Convergencia</strong>
+        
+        <p class="texto-cuerpo">
+            Determine el límite de la sucesión definida por \( a_n = \frac{3^n}{5^n} \) justificando formalmente su respuesta.
+        </p>
+
+        <div class="desarrollo-ejercicio" style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+            <p><strong>Fundamentos para la resolución:</strong></p>
+            <ol style="margin-left: 20px; margin-top: 10px;">
+                <li>
+                    <strong>Propiedad de las Potencias:</strong> Reescribimos la expresión como una progresión geométrica:
+                    \[ \frac{3^n}{5^n} = \left( \frac{3}{5} \right)^n \]
+                </li>
+                <li>
+                    <strong>Teorema de Sucesiones Geométricas:</strong> Para una sucesión \( \{r^n\} \), si \( |r| < 1 \), entonces \( \lim_{n \to \infty} r^n = 0 \). En este caso, \( r = 0.6 \).
+                </li>
+                <li>
+                    <p class="texto-cuerpo">
+    <strong>Conclusión:</strong> 
+    <span style="color: var(--acento-naranja); font-weight: bold;">
+        Dado que la razón \( |r| = |\frac{3}{5}| < 1 \), la sucesión es convergente y su límite es 0.
+    </span>
+</p>
+                </li>
+            </ol>
+        </div>
+
+         <hr class="linea-divisoria">
+         <p class="texto-cuerpo">
+            Para resolver este ejercicio de manera formal, nos apoyamos principalmente en tres conceptos y teoremas fundamentales del cálculo y el análisis matemático:
+        </p>
+        
+
+        <p class="texto-cuerpo">
+        Este es el teorema central para este problema. Establece lo siguiente:
+        <br Para una sucesión de la forma \( \{r^n\} \):
+    </p>
+
+    <ul class="lista-teorema" style="margin-top: 15px; margin-bottom: 15px;">
+        <li>
+            <strong></strong> Si \( |r| < 1 \), entonces \( \lim_{n \to \infty} r^n = 0 \).
+        </li>
+        <li>
+            <strong></strong> Si \( r = 1 \), entonces \( \lim_{n \to \infty} r^n = 1 \).
+        </li>
+        <li>
+            <strong></strong> Si \( r > 1 \) o \( r \leq -1 \), la sucesión <strong>diverge</strong>.
+        </li>
+    </ul>
+
+    <p class="texto-cuerpo">
+        Para este ejercicio, como \( r = \frac{3}{5} \) \(< 1 \), el teorema garantiza que el límite es \( 0 \).
+    </p>
+
+
+
+    </div>
+    <div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>                <div id="51ff91c6-3109-4fe6-9aa1-8f32c4615f75" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("51ff91c6-3109-4fe6-9aa1-8f32c4615f75")) {                    Plotly.newPlot(                        "51ff91c6-3109-4fe6-9aa1-8f32c4615f75",                        [{"hovertemplate":"\u003cb\u003en\u003c\u002fb\u003e: %{x}\u003cbr\u003e\u003cb\u003ea\u003csub\u003en\u003c\u002fsub\u003e\u003c\u002fb\u003e: %{y:.4f}\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#F08200","dash":"dash","width":1},"marker":{"color":"#F08200","size":10,"symbol":"circle"},"mode":"markers+lines","name":"Sucesión","x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"y":[0.6,0.36,0.21599999999999997,0.1296,0.07775999999999998,0.04665599999999999,0.027993599999999993,0.016796159999999994,0.010077695999999997,0.006046617599999997,0.0036279705599999985,0.002176782335999999,0.0013060694015999993,0.0007836416409599996,0.00047018498457599973],"type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"shapes":[{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":1,"x1":1,"y0":0,"y1":0.6},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":2,"x1":2,"y0":0,"y1":0.36},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":3,"x1":3,"y0":0,"y1":0.21599999999999997},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":4,"x1":4,"y0":0,"y1":0.1296},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":5,"x1":5,"y0":0,"y1":0.07775999999999998},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":6,"x1":6,"y0":0,"y1":0.04665599999999999},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":7,"x1":7,"y0":0,"y1":0.027993599999999993},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":8,"x1":8,"y0":0,"y1":0.016796159999999994},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":9,"x1":9,"y0":0,"y1":0.010077695999999997},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":10,"x1":10,"y0":0,"y1":0.006046617599999997},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":11,"x1":11,"y0":0,"y1":0.0036279705599999985},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":12,"x1":12,"y0":0,"y1":0.002176782335999999},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":13,"x1":13,"y0":0,"y1":0.0013060694015999993},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":14,"x1":14,"y0":0,"y1":0.0007836416409599996},{"line":{"color":"#F08200","dash":"solid","width":1.5},"opacity":0.5,"type":"line","x0":15,"x1":15,"y0":0,"y1":0.00047018498457599973}],"title":{"font":{"color":"white","size":20},"text":"Convergencia de la Sucesión $a_n = \\left(\\frac{3}{5}\\right)^n$","x":0.5},"xaxis":{"tickfont":{"color":"white"},"title":{"text":"n (índice)","font":{"color":"#94a3b8"}},"gridcolor":"#1e293b","tickmode":"linear","tick0":1,"dtick":1},"yaxis":{"tickfont":{"color":"white"},"title":{"text":"a_n","font":{"color":"#94a3b8"}},"gridcolor":"#1e293b","zeroline":false},"margin":{"l":40,"r":40,"t":60,"b":40},"paper_bgcolor":"#0f172a","plot_bgcolor":"#0f172a","showlegend":false,"annotations":[{"arrowcolor":"#F08200","arrowhead":2,"ax":-40,"ay":-40,"bgcolor":"#0f172a","bordercolor":"#F08200","borderwidth":1,"font":{"color":"white","size":12},"showarrow":true,"text":"Límite = 0","x":15,"y":0}]},                        {"responsive": true}                    )                };                            </script>        </div>
+</section>
+
+
+        <section id="glosario" class="seccion-glosario">
+            <hr class="linea-divisoria">
+            <h2 class="titulo-glosario">Glosario de Términos</h2>
+            <dl class="lista-glosario">
+                <dt id="glosario-sucesion" class="termino-glosario"><strong>Sucesión:</strong></dt>
+                <dd class="definicion-glosario">Función con dominio en enteros positivos.</dd>
+                <dt id="glosario-convergencia" class="termino-glosario"><strong>Convergencia:</strong></dt>
+                <dd class="definicion-glosario">Acumulación de términos cerca de un punto.</dd>
+            </dl>
+            <a href="#introduccion" class="boton-volver">↑ Volver al inicio</a>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('toggle-intro');
+            const sub = document.getElementById('sub-intro');
+            if (btn && sub) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const esVisible = sub.style.display === 'block';
+                    sub.style.display = esVisible ? 'none' : 'block';
+                    btn.style.transform = esVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+                });
+            }
+        });
+    </script> 
+</body>
+</html>

@@ -1,3 +1,4 @@
+HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,6 +12,35 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+    <style>
+        /* Estilos para los controles deslizantes nativos de HTML */
+        .contenedor-control-nativo {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .contenedor-control-nativo label {
+            color: #60a5fa;
+            font-weight: bold;
+            min-width: 150px;
+        }
+        .contenedor-control-nativo input[type="range"] {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        .contenedor-control-nativo .valor-display {
+            color: #f1f5f9;
+            font-weight: bold;
+            min-width: 40px;
+            text-align: right;
+        }
+    </style>
 </head>
 <body>
 
@@ -19,7 +49,7 @@
             <img src="uacm.png" alt="Logo Universidad" class="uni-logo">
         </div>
         <div class="texto-container">
-            <span class="uni-nombre">Universidad Autónoma de la Ciudad de México | plantel Casa Libertad | Modelación matemática</span>
+            <span class="uni-nombre">Universidad Autónoma de la Ciudad de México | Plantilla Casa Libertad | Modelación Matemática</span>
             <br><span class="uni-lema">Nada humano me es ajeno</span>
         </div>
     </header>
@@ -39,9 +69,24 @@
                     <li><a href="#cauchy-seccion" class="link-sub-menu">Sucesiones de Cauchy</a></li>
                 </ul>
             </li>
-            <li><a href="#definiciones" class="link-menu">Definiciones</a></li>
-            <li><a href="#graficas" class="link-menu">Visualizaciones</a></li>
-            <li><a href="#seccion-tareas" class="link-menu"><span style="color: var(--acento-azul);">📝</span> Tareas</a></li>
+            
+            <li>
+                <div class="menu-item-wrapper">
+                    <a href="#seccion-tareas" class="link-menu"><span style="color: var(--acento-azul);">📝</span> Tareas</a>
+                    <button id="toggle-tareas" class="boton-desplegar">▼</button>
+                </div>
+                <ul id="sub-tareas" class="sub-menu" style="display: none;">
+                    <li><a href="#ejercicio1" class="link-sub-menu">Ejercicio 1</a></li>
+                    <li><a href="#ejercicio2" class="link-sub-menu">Ejercicio 2</a></li>
+                    <li><a href="#ejercicio3" class="link-sub-menu">Ejercicio 3</a></li>
+                    <li><a href="#ejercicio4" class="link-sub-menu">Ejercicio 4</a></li>
+                    <li><a href="#ejercicio5" class="link-sub-menu">Ejercicio 5</a></li>
+                    <li><a href="#ejercicio6" class="link-sub-menu">Ejercicio 6</a></li>
+                    <li><a href="#ejercicio7" class="link-sub-menu">Ejercicio 7</a></li>
+                    <li><a href="#ejercicio8" class="link-sub-menu">Ejercicio 8</a></li>
+                </ul>
+            </li>
+
             <li><a href="#glosario" class="link-menu enlace-especial">Glosario</a></li>
         </ul>
     </nav>
@@ -70,7 +115,7 @@
             </div>
             
             <div class="caja-teorema">
-                <strong class="titulo-teorema">Teorema 3.2</strong>
+                <strong class="titulo-teorema">Teorema 3.2 (Rudin)</strong>
                 <ul class="lista-teorema">
                     <li><strong>(a)</strong> \(\{p_n\}\) converge hacia \(p\) ssi toda vecindad de \(p\) contiene a todos los términos salvo un número finito.</li>
                     <li><strong>(b)</strong> Si \(p\) y \(p'\) son límites de la misma sucesión, entonces \(p = p'\).</li>
@@ -78,12 +123,10 @@
                     <li><strong>(d)</strong> Si \(p\) es punto límite de \(E \subset X\), existe una sucesión en \(E\) que converge a \(p\).</li>
                 </ul>
             </div>
-        </section>
-        
-        <section id="ejemplo-convergencia" class="seccion-libro">
+            
             <h3 class="titulo-ejemplo">Ejemplo visto en la clase del profesor Alfaro</h3>
             <div class="caja-ejemplo">
-                <p class="texto-cuerpo">Demostrar \(\lim_{n \to \infty} \frac{1}{n} = 0\): Para todo \(\epsilon > 0\), existe \(N > 1/\epsilon\) tal que para \(n \geq N\), \(|\frac{1}{n} - 0| < \epsilon\).</p>
+                <p class="texto-cuerpo">Demostrar \(\lim_{n \to \infty} \frac{1}{n} = 0\): Para todo \(\epsilon > 0\), la Propiedad Arquimediana garantiza que existe \(N \in \mathbb{N}\) tal que \(N > 1/\epsilon\). Así, para todo \(n \geq N\), se cumple que \(|\frac{1}{n} - 0| = \frac{1}{n} \leq \frac{1}{N} < \epsilon\).</p>
             </div>
         </section>
 
@@ -110,7 +153,7 @@
             <hr class="linea-divisoria">
             <h2 class="titulo-seccion">Sucesiones de Cauchy</h2>
             <p class="texto-cuerpo">
-                A diferencia de la convergencia estándar, donde necesitamos conocer el límite de antemano, el concepto de Cauchy nos permite analizar el comportamiento de los términos entre sí.
+                A diferencia de la convergencia estándar, donde necesitamos conocer el límite de antemano, el criterio de Cauchy nos permite analizar el comportamiento intrínseco de los términos sin requerir el valor del límite a priori.
             </p>
             <div class="caja-teorema">
                 <strong class="titulo-teorema">Definición 3.8</strong>
@@ -125,53 +168,219 @@
             <hr class="linea-divisoria">
             <h2 class="titulo-seccion">Sección de Tareas</h2>
 
-            <div class="caja-tarea">
-                <strong class="titulo-tarea">Ejercicio 1: Análisis de Convergencia</strong>
-                <p class="texto-cuerpo">
-                    Determine el límite de la sucesión definida por \( a_n = \frac{3^n}{5^n} \) justificando formalmente su respuesta.
-                </p>
-
-                <div class="desarrollo-ejercicio" style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
-                    <p><strong>Fundamentos para la resolución:</strong></p>
-                    <ol style="margin-left: 20px; margin-top: 10px;">
-                        <li><strong>Propiedad de las Potencias:</strong> \( \frac{3^n}{5^n} = \left( \frac{3}{5} \right)^n \)</li>
-                        <li><strong>Teorema de Sucesiones Geométricas:</strong> Si \( |r| < 1 \), \( \lim_{n \to \infty} r^n = 0 \).</li>
-                        <li>
-                            <p class="texto-cuerpo">
-                                <strong>Conclusión:</strong> 
-                                <span style="color: var(--acento-naranja); font-weight: bold;">
-                                    Dado que la razón \( |r| = |\frac{3}{5}| < 1 \), la sucesión es convergente y su límite es 0.
-                                </span>
-                            </p>
-                        </li>
-                    </ol>
+            <div id="ejercicio1" class="caja-tarea">
+                <strong class="titulo-tarea">Ejercicio 1: Análisis de Convergencia Geométrica</strong>
+                <p class="texto-cuerpo">Determine el límite de la sucesión definida por: \( a_n = \frac{3^n}{5^n} \)</p>
+                
+                <div class="desarrollo-ejercicio">
+                    <p><strong>Arsenal de Teoremas y Propiedades Algebraicas:</strong></p>
+                    <ul class="lista-teorema-procedimiento">
+                        <li><strong>Leyes de los Exponentes:</strong> Distribución del exponente sobre el cociente: \(\frac{x^n}{y^n} = \left(\frac{x}{y}\right)^n\).</li>
+                        <li><strong>Teorema 3.20 (Rudin):</strong> Si \(|x| < 1\), entonces \(\lim_{n \to \infty} x^n = 0\).</li>
+                    </ul>
+                    
+                    <p><strong>Demostración Analítica Estricta:</strong></p>
+                    <p class="texto-cuerpo">Reescribimos el término general asociando la potencia común:</p>
+                    <div class="formula-math">$$a_n = \left( \frac{3}{5} \right)^n$$</div>
+                    <p class="texto-cuerpo">Definiendo la razón geométrica \( x = \frac{3}{5} = 0.6 \), observamos de inmediato que \( |0.6| < 1 \). Aplicando de forma directa el Teorema 3.20 de Principios de Análisis Matemático de Rudin, concluimos que la sucesión es convergente y su límite es exactamente cero.</p>
+                    <div class="formula-math">$$\lim_{n \to \infty} \left( \frac{3}{5} \right)^n = 0$$</div>
                 </div>
 
-                <hr class="linea-divisoria">
-                <p class="texto-cuerpo">
-                    Para resolver este ejercicio de manera formal, nos apoyamos principalmente en tres conceptos y teoremas fundamentales del cálculo y el análisis matemático:
-                </p>
-
-                <ul class="lista-teorema" style="margin-top: 15px; margin-bottom: 15px;">
-                    <li><strong>Si \( |r| < 1 \), entonces \( \lim_{n \to \infty} r^n = 0 \).</strong></li>
-                    <li><strong>Si \( r = 1 \), entonces \( \lim_{n \to \infty} r^n = 1 \).</strong></li>
-                    <li><strong>Si \( r > 1 \) o \( r \leq -1 \), la sucesión diverge.</strong></li>
-                </ul>
-
-                <p class="texto-cuerpo">
-                    Para este ejercicio, como \( r = \frac{3}{5} < 1 \), el teorema garantiza que el límite es \( 0 \).
-                </p>
+                <div style="width: 100%; margin-top: 20px; background: #0f172a; border-radius: 8px; padding: 10px;">
+                    <div id="grafica-plotly" style="height:400px; width:100%;"></div>
+                </div>
             </div>
 
-            <div style="width: 100%; margin-top: 20px; background: #0f172a; border-radius: 8px; padding: 10px;">
-                <div id="grafica-plotly" style="height:500px; width:100%;"></div>
-                <script type="text/javascript">
-                    window.PLOTLYENV=window.PLOTLYENV || {};
-                    Plotly.newPlot("grafica-plotly", 
-                    [{"hovertemplate":"<b>n</b>: %{x}<br><b>a<sub>n</sub></b>: %{y:.4f}<extra></extra>","line":{"color":"#F08200","dash":"dash","width":1},"marker":{"color":"#F08200","size":10,"symbol":"circle"},"mode":"markers+lines","name":"Sucesión","x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"y":[0.6,0.36,0.216,0.130,0.078,0.047,0.028,0.017,0.010,0.006,0.004,0.002,0.001,0.0008,0.0005],"type":"scatter"}], 
-                    {"title":{"font":{"color":"white","size":20},"text":"Convergencia de a_n = (3/5)^n","x":0.5},"xaxis":{"tickfont":{"color":"white"},"title":{"text":"n (índice)","font":{"color":"#94a3b8"}},"gridcolor":"#1e293b","tickmode":"linear","tick0":1,"dtick":1},"yaxis":{"tickfont":{"color":"white"},"title":{"text":"a_n","font":{"color":"#94a3b8"}},"gridcolor":"#1e293b","zeroline":false},"paper_bgcolor":"#0f172a","plot_bgcolor":"#0f172a","showlegend":false,"annotations":[{"arrowcolor":"#F08200","arrowhead":2,"ax":-40,"ay":-40,"bgcolor":"#0f172a","bordercolor":"#F08200","borderwidth":1,"font":{"color":"white","size":12},"showarrow":true,"text":"Límite = 0","x":15,"y":0}]}, 
-                    {"responsive": true});
-                </script>
+            <div id="ejercicio2" class="caja-tarea" style="margin-top: 30px;">
+                <strong class="titulo-tarea">Ejercicio 2: Análisis Factorial vs Exponencial (Divergencia)</strong>
+                <p class="texto-cuerpo">Determine el comportamiento asintótico y el límite de la sucesión definida por: \( a_n = \frac{n!}{3^n} \)</p>
+                
+                <div class="desarrollo-ejercicio">
+                    <p><strong>Arsenal de Teoremas y Propiedades Algebraicas:</strong></p>
+                    <ul class="lista-teorema-procedimiento">
+                        <li><strong>Criterio de la Razón (Teorema d'Alembert para Sucesiones):</strong> Sea \(a_n > 0\). Si \(\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = L\), entonces si \(L > 1\), \(\lim_{n \to \infty} a_n = \infty\).</li>
+                    </ul>
+                    
+                    <p><strong>Demostración Analítica Estricta:</strong></p>
+                    <p class="texto-cuerpo">Evaluamos el límite del cociente de dos términos consecutivos:</p>
+                    <div class="formula-math">$$\frac{a_{n+1}}{a_n} = \frac{\frac{(n+1)!}{3^{n+1}}}{\frac{n!}{3^n}} = \frac{(n+1)! \cdot 3^n}{n! \cdot 3^{n+1}}$$</div>
+                    <p class="texto-cuerpo">Utilizando las propiedades del factorial \((n+1)! = (n+1)n!\) and \(3^{n+1} = 3 \cdot 3^n\), simplificamos la expresión:</p>
+                    <div class="formula-math">$$\frac{a_{n+1}}{a_n} = \frac{(n+1)n! \cdot 3^n}{n! \cdot 3 \cdot 3^n} = \frac{n+1}{3}$$</div>
+                    <p class="texto-cuerpo">Calculando el límite cuando \(n \to \infty\):</p>
+                    <div class="formula-math">$$\lim_{n \to \infty} \frac{n+1}{3} = \infty$$</div>
+                    <p class="texto-cuerpo">Puesto que el límite \(L = \infty > 1\), el crecimiento del operador factorial supera infinitamente a cualquier base exponencial fija. Por lo tanto, la sucesión diverge de forma explosiva hacia el infinito.</p>
+                    <div class="formula-math">$$\lim_{n \to \infty} \frac{n!}{3^n} = \infty$$</div>
+                </div>
+
+                <div style="width: 100%; margin-top: 20px; background: #0f172a; border-radius: 8px; padding: 10px;">
+                    <div id="grafica-plotly-factorial" style="height:400px; width:100%;"></div>
+                </div>
+            </div>
+
+            <div id="ejercicio3" class="caja-tarea" style="margin-top: 30px;">
+                <strong class="titulo-tarea">Ejercicio 3: Sucesión Inversa Exponencial-Factorial</strong>
+                <p class="texto-cuerpo">Determine la convergencia y el límite de la sucesión definida por: \( a_n = \frac{2^n}{n!} \)</p>
+                
+                <div class="desarrollo-ejercicio">
+                    <p><strong>Arsenal de Teoremas y Propiedades Algebraicas:</strong></p>
+                    <ul class="lista-teorema-procedimiento">
+                        <li><strong>Criterio de la Razón para Convergencia Absoluta:</strong> Si para \(a_n > 0\) se tiene \(\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = L < 1\), entonces \(\lim_{n \to \infty} a_n = 0\).</li>
+                    </ul>
+                    
+                    <p><strong>Demostración Analítica Estricta:</strong></p>
+                    <p class="texto-cuerpo">Establecemos el cociente de términos sucesivos para analizar la velocidad de contracción:</p>
+                    <div class="formula-math">$$\frac{a_{n+1}}{a_n} = \frac{\frac{2^{n+1}}{(n+1)!}}{\frac{2^n}{n!}} = \frac{2^{n+1} \cdot n!}{2^n \cdot (n+1)!} = \frac{2 \cdot 2^n \cdot n!}{2^n \cdot (n+1)n!} = \frac{2}{n+1}$$</div>
+                    <p class="texto-cuerpo">Tomando el límite asintótico:</p>
+                    <div class="formula-math">$$L = \lim_{n \to \infty} \frac{2}{n+1} = 0$$</div>
+                    <p class="texto-cuerpo">Dado que \(L = 0 < 1\), el criterio garantiza que los términos de la sucesión se colapsan velozmente hacia el origen. El factorial en el denominador asfixia por completo el crecimiento del numerador lineal-exponencial, forzando la convergencia a cero.</p>
+                    <div class="formula-math">$$\lim_{n \to \infty} \frac{2^n}{n!} = 0$$</div>
+                </div>
+
+                <div style="width: 100%; margin-top: 20px; background: #0f172a; border-radius: 8px; padding: 10px;">
+                    <div id="grafica-plotly-ejercicio3" style="height:400px; width:100%;"></div>
+                </div>
+            </div>
+
+            <div id="ejercicio4" class="caja-tarea" style="margin-top: 30px;">
+                <strong class="titulo-tarea">Ejercicio 4: Factorial Complejo vs Potencia N-ésima Variable</strong>
+                <p class="texto-cuerpo">Determine el comportamiento de convergencia de la sucesión: \( a_n = \frac{(n+1)!}{n^n} \)</p>
+                
+                <div class="desarrollo-ejercicio">
+                    <p><strong>Arsenal de Teoremas y Propiedades Algebraicas:</strong></p>
+                    <ul class="lista-teorema-procedimiento">
+                        <li><strong>Identidad Fundamental del Factorial:</strong> \((n+1)! = (n+1) \cdot n!\).</li>
+                        <li><strong>Definición del Límite de Euler:</strong> \(\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = e\).</li>
+                    </ul>
+                    
+                    <p><strong>Demostración Analítica Estricta:</strong></p>
+                    <p class="texto-cuerpo">Descomponemos el término general para buscar una relación con el límite clásico de la constante \(e\):</p>
+                    <div class="formula-math">$$a_n = \frac{(n+1) \cdot n!}{n^n} = (n+1) \cdot \frac{n!}{n^n}$$</div>
+                    <p class="texto-cuerpo">Para evaluar de forma rigurosa la convergencia, aplicamos el criterio del cociente:</p>
+                    <div class="formula-math">$$\frac{a_{n+1}}{a_n} = \frac{\frac{(n+2)!}{(n+1)^{n+1}}}{\frac{(n+1)!}{n^n}} = \frac{(n+2)! \cdot n^n}{(n+1)! \cdot (n+1)^{n+1}} = \frac{(n+2)(n+1)! \cdot n^n}{(n+1)! \cdot (n+1)(n+1)^n}$$</div>
+                    <p class="texto-cuerpo">Simplificando los términos semejantes y agrupando las potencias de orden \(n\):</p>
+                    <div class="formula-math">$$\frac{a_{n+1}}{a_n} = \frac{n+2}{n+1} \cdot \left( \frac{n}{n+1} \right)^n = \frac{n+2}{n+1} \cdot \frac{1}{\left(\frac{n+1}{n}\right)^n} = \frac{n+2}{n+1} \cdot \frac{1}{\left(1 + \frac{1}{n}\right)^n}$$</div>
+                    <p class="texto-cuerpo">Calculamos el límite aplicando el álgebra de límites:</p>
+                    <div class="formula-math">$$\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = \lim_{n \to \infty} \left( \frac{n+2}{n+1} \right) \cdot \lim_{n \to \infty} \frac{1}{\left(1 + \frac{1}{n}\right)^n} = 1 \cdot \frac{1}{e} = \frac{1}{e}$$</div>
+                    <p class="texto-cuerpo">Sabiendo que \(e \approx 2.71828\), tenemos que \(L = \frac{1}{e} \approx 0.36787 < 1\). Por el criterio de d'Alembert, la sucesión converge monótonamente a cero.</p>
+                    <div class="formula-math">$$\lim_{n \to \infty} \frac{(n+1)!}{n^n} = 0$$</div>
+                </div>
+
+                <div style="width: 100%; margin-top: 20px; background: #0f172a; border-radius: 8px; padding: 10px;">
+                    <div id="grafica-plotly-ejercicio4" style="height:400px; width:100%;"></div>
+                </div>
+            </div>
+
+            <div id="ejercicio5" class="caja-tarea" style="margin-top: 30px;">
+                <strong class="titulo-tarea">Ejercicio 5: El Choque Canónico entre Factorial y Base Variable</strong>
+                <p class="texto-cuerpo">Determine de forma analítica la convergencia de: \( a_n = \frac{n!}{n^n} \)</p>
+                
+                <div class="desarrollo-ejercicio">
+                    <p><strong>Arsenal de Teoremas y Propiedades Algebraicas:</strong></p>
+                    <ul class="lista-teorema-procedimiento">
+                        <li><strong>Teorema del Sándwich (Acotamiento):</strong> Si \(b_n \leq a_n \leq c_n\) y \(\lim b_n = \lim c_n = L\), entonces \(\lim a_n = L\).</li>
+                    </ul>
+                    
+                    <p><strong>Demostración Analítica Estricta:</strong></p>
+                    <p class="texto-cuerpo">Expandimos el término general de la sucesión de manera explícita para analizar la magnitud de sus factores:</p>
+                    <div class="formula-math">$$a_n = \frac{1 \cdot 2 \cdot 3 \cdots n}{n \cdot n \cdot n \cdots n} = \left(\frac{1}{n}\right) \cdot \left(\frac{2}{n}\right) \cdot \left(\frac{3}{n}\right) \cdots \left(\frac{n}{n}\right)$$</div>
+                    <p class="texto-cuerpo">Podemos acotar superiormente abstrayendo todos los factores intermedios, observando que para todo \(2 \leq k \leq n\) se cumple estrictamente que \(\frac{k}{n} \leq 1\). Por lo tanto:</p>
+                    <div class="formula-math">$$a_n = \frac{1}{n} \cdot \prod_{k=2}^n \frac{k}{n} \leq \frac{1}{n} \cdot (1 \cdot 1 \cdots 1) = \frac{1}{n}$$</div>
+                    <p class="texto-cuerpo">Construimos las cotas para la sucesión considerando que todos los términos son estrictamente positivos:</p>
+                    <div class="formula-math">$$0 < a_n \leq \frac{1}{n}$$</div>
+                    <p class="texto-cuerpo">Tomando el límite en los extremos de la desigualdad:</p>
+                    <div class="formula-math">$$\lim_{n \to \infty} 0 = 0 \quad \text{y} \quad \lim_{n \to \infty} \frac{1}{n} = 0$$</div>
+                    <p class="texto-cuerpo">Por la aplicación directa del Teorema del Sándwich, queda formalmente demostrado que el orden de crecimiento exponencial variable de \(n^n\) supera al crecimiento factorial de \(n!\), obligando a la sucesión a converger a cero.</p>
+                    <div class="formula-math">$$\lim_{n \to \infty} \frac{n!}{n^n} = 0$$</div>
+                </div>
+
+                <div style="width: 100%; margin-top: 20px; background: #0f172a; border-radius: 8px; padding: 10px;">
+                    <div id="grafica-plotly-ejercicio5" style="height:400px; width:100%;"></div>
+                </div>
+            </div>
+
+            <div id="ejercicio6" class="caja-tarea" style="margin-top: 30px;">
+                <strong class="titulo-tarea">Ejercicio 6: Competencia Asintótica Combinada (Aproximación de Stirling)</strong>
+                <p class="texto-cuerpo">Determine el comportamiento y límite de la sucesión definida por: \( a_n = \frac{3^n n!}{n^n} \)</p>
+                
+                <div class="desarrollo-ejercicio">
+                    <p><strong>Arsenal de Teoremas y Propiedades Algebraicas:</strong></p>
+                    <ul class="lista-teorema-procedimiento">
+                        <li><strong>Fórmula Asintótica de Stirling:</strong> \(n! \sim \sqrt{2\pi n} \left(\frac{n}{e}\right)^n\) cuando \(n \to \infty\).</li>
+                    </ul>
+                    
+                    <p><strong>Demostración Analítica Estricta:</strong></p>
+                    <p class="texto-cuerpo">Para analizar el comportamiento de esta combinación agresiva de operadores, sustituimos el término factorial por su equivalencia asintótica de Stirling:</p>
+                    <div class="formula-math">$$a_n \sim \frac{3^n \cdot \sqrt{2\pi n} \left(\frac{n}{e}\right)^n}{n^n} = \frac{3^n \cdot \sqrt{2\pi n} \cdot n^n}{e^n \cdot n^n}$$</div>
+                    <p class="texto-cuerpo">Simplificando la potencia variable \(n^n\) en el numerador y denominador:</p>
+                    <div class="formula-math">$$a_n \sim \sqrt{2\pi n} \cdot \left( \frac{3}{e} \right)^n$$</div>
+                    <p class="texto-cuerpo">Analizamos las bases numéricas involucradas. Dado que la constante de Euler es \(e \approx 2.71828\), la razón del término exponencial cumple que:</p>
+                    <div class="formula-math">$$\frac{3}{e} > 1 \Rightarrow \lim_{n \to \infty} \left(\frac{3}{e}\right)^n = \infty$$</div>
+                    <p class="texto-cuerpo">Al multiplicar una función exponencial divergente por un término radical monótonamente creciente \(\sqrt{2\pi n}\), los valores se disparan de forma masiva. Queda demostrado que la sucesión diverge de forma absoluta hacia el infinito.</p>
+                    <div class="formula-math">$$\lim_{n \to \infty} \frac{3^n n!}{n^n} = \infty$$</div>
+                </div>
+
+                <div style="width: 100%; margin-top: 20px; background: #0f172a; border-radius: 8px; padding: 10px;">
+                    <div id="grafica-plotly-ejercicio6" style="height:400px; width:100%;"></div>
+                </div>
+            </div>
+
+            <div id="ejercicio7" class="caja-tarea" style="margin-top: 30px;">
+                <strong class="titulo-tarea">Ejercicio 7: Análisis Paramétrico de Radio de Convergencia</strong>
+                <p class="texto-cuerpo">Determine los valores del parámetro \( a > 0 \) para los cuales la sucesión converge: \( u_n = \frac{a^n}{n!} \)</p>
+                
+                <div class="desarrollo-ejercicio">
+                    <p><strong>Arsenal de Teoremas y Propiedades Algebraicas:</strong></p>
+                    <ul class="lista-teorema-procedimiento">
+                        <li><strong>Criterio General de d'Alembert con Parámetros:</strong> Aplicación del límite del cociente manteniendo constantes algebraicas.</li>
+                    </ul>
+                    
+                    <p><strong>Demostración Analítica Estricta:</strong></p>
+                    <p class="texto-cuerpo">Planteamos la razón de convergencia para un parámetro \(a\) genérico fijo:</p>
+                    <div class="formula-math">$$\frac{u_{n+1}}{u_n} = \frac{\frac{a^{n+1}}{(n+1)!}}{\frac{a^n}{n!}} = \frac{a^{n+1} \cdot n!}{a^n \cdot (n+1)!} = \frac{a \cdot a^n \cdot n!}{a^n \cdot (n+1)n!} = \frac{a}{n+1}$$</div>
+                    <p class="texto-cuerpo">Calculamos el límite asintótico para cualquier valor real y positivo de \(a\):</p>
+                    <div class="formula-math">$$L = \lim_{n \to \infty} \frac{a}{n+1} = a \cdot \lim_{n \to \infty} \frac{1}{n+1} = a \cdot 0 = 0$$</div>
+                    <p class="texto-cuerpo">El límite del cociente es de forma idéntica \(L = 0\) para cualquier elección de \(a\). Como \(0 < 1\) de forma universal, **la sucesión converge a 0 para absolutamente todos los valores de \(a > 0\)**. Esto demuestra analíticamente que el crecimiento del orden factorial es infinitamente superior al crecimiento de cualquier función exponencial de base fija, sin importar qué tan grande sea dicha base.</p>
+                </div>
+                
+                <div class="contenedor-control-nativo">
+                    <label for="slider-e7">Parámetro Base (a):</label>
+                    <input type="range" id="slider-e7" min="1" max="20" value="5" step="1">
+                    <span id="val-e7" class="valor-display">5</span>
+                </div>
+
+                <div style="width: 100%; background: #0f172a; border-radius: 8px; padding: 10px;">
+                    <div id="grafica-plotly-ejercicio7" style="height:400px; width:100%;"></div>
+                </div>
+            </div>
+
+            <div id="ejercicio8" class="caja-tarea" style="margin-top: 30px;">
+                <strong class="titulo-tarea">Ejercicio 8: Bifurcación Paramétrica de Potencias vs Exponenciales</strong>
+                <p class="texto-cuerpo">Estudie el comportamiento y convergencia de la sucesión según el valor de \( r \in \mathbb{R} \): \( u_n = \frac{n^r}{2^n} \)</p>
+                
+                <div class="desarrollo-ejercicio">
+                    <p><strong>Arsenal de Teoremas y Propiedades Algebraicas:</strong></p>
+                    <ul class="lista-teorema-procedimiento">
+                        <li><strong>Teorema 3.19 (Rudin):</strong> Si \(\alpha > 0\) y \(n^r\) es un polinomio, la base exponencial \( (1+p)^n \) domina al infinito.</li>
+                        <li><strong>Criterio de la Raíz N-ésima (Teorema de Cauchy):</strong> Sea \(\lim_{n \to \infty} \sqrt[n]{|u_n|} = R\). Si \(R < 1\), la sucesión converge a cero.</li>
+                    </ul>
+                    
+                    <p><strong>Demostración Analítica Estricta:</strong></p>
+                    <p class="texto-cuerpo">Para abarcar todos los casos del exponente real \(r\), aplicamos el criterio de la raíz n-ésima al término general:</p>
+                    <div class="formula-math">$$\sqrt[n]{u_n} = \sqrt[n]{\frac{n^r}{2^n}} = \frac{\sqrt[n]{n^r}}{\sqrt[n]{2^n}} = \frac{(\sqrt[n]{n})^r}{2}$$</div>
+                    <p class="texto-cuerpo">Aplicamos el límite fundamental demostrado en el Teorema 3.11 de Rudin, el cual establece de forma rigurosa que \(\lim_{n \to \infty} \sqrt[n]{n} = 1\):</p>
+                    <div class="formula-math">$$R = \lim_{n \to \infty} \frac{(\sqrt[n]{n})^r}{2} = \frac{(1)^r}{2} = \frac{1}{2}$$</div>
+                    <p class="texto-cuerpo">Debido a que el radio resultante es \(R = \frac{1}{2} < 1\), el criterio demuestra de manera contundente que **la sucesión converge a cero para cualquier valor del exponente \( r \in \mathbb{R} \)**. No importa si el polinomio es de orden masivo (ej. \(n^{10}\)), la base exponencial \(2^n\) eventualmente dominará la tasa de cambio asintótica y aplastará el término hacia el origen.</p>
+                </div>
+                
+                <div class="contenedor-control-nativo">
+                    <label for="slider-e8">Exponente (r):</label>
+                    <input type="range" id="slider-e8" min="-2" max="10" value="2" step="1">
+                    <span id="val-e8" class="valor-display">2</span>
+                </div>
+
+                <div style="width: 100%; background: #0f172a; border-radius: 8px; padding: 10px;">
+                    <div id="grafica-plotly-ejercicio8" style="height:400px; width:100%;"></div>
+                </div>
             </div>
         </section>
 
@@ -179,10 +388,10 @@
             <hr class="linea-divisoria">
             <h2 class="titulo-glosario">Glosario de Términos</h2>
             <dl class="lista-glosario">
-                <dt id="glosario-sucesion" class="termino-glosario"><strong>Sucesión:</strong></dt>
-                <dd class="definicion-glosario">Función con dominio en enteros positivos.</dd>
-                <dt id="glosario-convergencia" class="termino-glosario"><strong>Convergencia:</strong></dt>
-                <dd class="definicion-glosario">Acumulación de términos cerca de un punto.</dd>
+                <dt id="glosario-sucesion"><strong>Sucesión:</strong></dt>
+                <dd>Función cuyo dominio es el conjunto de los números enteros positivos e imagen en un espacio métrico.</dd>
+                <dt id="glosario-convergencia"><strong>Convergencia:</strong></dt>
+                <dd>Propiedad de una sucesión de acumularse en una vecindad infinitesimal de un punto límite único.</dd>
             </dl>
             <a href="#introduccion" class="boton-volver">↑ Volver al inicio</a>
         </section>
@@ -190,17 +399,128 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const btn = document.getElementById('toggle-intro');
-            const sub = document.getElementById('sub-intro');
-            if (btn && sub) {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const esVisible = sub.style.display === 'block';
-                    sub.style.display = esVisible ? 'none' : 'block';
-                    btn.style.transform = esVisible ? 'rotate(0deg)' : 'rotate(180deg)';
-                });
+            // Lógica del menú desplegable de la barra lateral (Sidebar)
+            function setupToggle(btnId, subId) {
+                const btn = document.getElementById(btnId);
+                const sub = document.getElementById(subId);
+                if (btn && sub) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const esVisible = sub.style.display === 'block';
+                        sub.style.display = esVisible ? 'none' : 'block';
+                        btn.textContent = esVisible ? '▼' : '▲';
+                    });
+                }
             }
+            setupToggle('toggle-intro', 'sub-intro');
+            setupToggle('toggle-tareas', 'sub-tareas');
+
+            // Paleta de Colores Modo Oscuro y Configuración Estética Global de Plotly
+            const layoutBase = {
+                paper_bgcolor: '#0f172a',
+                plot_bgcolor: '#0f172a',
+                font: { color: '#94a3b8', family: 'system-ui, sans-serif' },
+                margin: { l: 60, r: 30, t: 40, b: 50 },
+                xaxis: { gridcolor: 'rgba(255,255,255,0.05)', zerolinecolor: 'rgba(255,255,255,0.2)' },
+                yaxis: { gridcolor: 'rgba(255,255,255,0.05)', zerolinecolor: 'rgba(255,255,255,0.2)' }
+            };
+
+            // Algoritmo matemático para calcular factoriales de forma iterativa limpia
+            function factorial(num) {
+                if (num === 0 || num === 1) return 1;
+                let result = 1;
+                for (let i = 2; i <= num; i++) result *= i;
+                return result;
+            }
+
+            // RENDERIZADO DE LAS GRÁFICAS ESTÁTICAS (EJERCICIOS DEL 1 AL 6)
+            
+            // Ejercicio 1
+            const n1 = Array.from({length: 25}, (_, i) => i + 1);
+            Plotly.newPlot('grafica-plotly', [{ x: n1, y: n1.map(n => Math.pow(0.6, n)), mode: 'markers+lines', marker: { color: '#60a5fa' } }], layoutBase, {responsive: true});
+
+            // Ejercicio 2
+            const n2 = Array.from({length: 10}, (_, i) => i + 1);
+            Plotly.newPlot('grafica-plotly-factorial', [{ x: n2, y: n2.map(n => factorial(n) / Math.pow(3, n)), mode: 'markers+lines', marker: { color: '#ef4444' } }], layoutBase, {responsive: true});
+
+            // Ejercicio 3
+            const n3 = Array.from({length: 15}, (_, i) => i + 1);
+            Plotly.newPlot('grafica-plotly-ejercicio3', [{ x: n3, y: n3.map(n => Math.pow(2, n) / factorial(n)), mode: 'markers+lines', marker: { color: '#10b981' } }], layoutBase, {responsive: true});
+
+            // Ejercicio 4
+            const n4 = Array.from({length: 15}, (_, i) => i + 1);
+            Plotly.newPlot('grafica-plotly-ejercicio4', [{ x: n4, y: n4.map(n => factorial(n + 1) / Math.pow(n, n)), mode: 'markers+lines', marker: { color: '#a855f7' } }], layoutBase, {responsive: true});
+
+            // Ejercicio 5
+            const n5 = Array.from({length: 15}, (_, i) => i + 1);
+            Plotly.newPlot('grafica-plotly-ejercicio5', [{ x: n5, y: n5.map(n => factorial(n) / Math.pow(n, n)), mode: 'markers+lines', marker: { color: '#f59e0b' } }], layoutBase, {responsive: true});
+
+            // Ejercicio 6 (Uso de sumatorias logarítmicas para prevenir Overflow por base 3)
+            const n6 = Array.from({length: 35}, (_, i) => i + 1);
+            const y6 = n6.map(n => {
+                let logSum = n * Math.log(3);
+                for(let i = 1; i <= n; i++) logSum += Math.log(i);
+                logSum -= n * Math.log(n);
+                return Math.exp(logSum);
+            });
+            Plotly.newPlot('grafica-plotly-ejercicio6', [{ x: n6, y: y6, mode: 'markers+lines', marker: { color: '#ef4444' } }], layoutBase, {responsive: true});
+
+
+            // --- SISTEMA INTERACTIVO DE RE-RENDERIZADO PARA EJERCICIO 7 ---
+            const n7 = Array.from({length: 25}, (_, i) => i + 1);
+            const sliderE7 = document.getElementById('slider-e7');
+            const valE7 = document.getElementById('val-e7');
+
+            function actualizarGrafica7(val) {
+                const yCalculada = n7.map(n => Math.pow(val, n) / factorial(n));
+                Plotly.react('grafica-plotly-ejercicio7', [{
+                    x: n7,
+                    y: yCalculada,
+                    mode: 'markers+lines',
+                    marker: { color: '#10b981', size: 8 },
+                    line: { color: 'rgba(16, 185, 129, 0.4)' },
+                    name: 'u_n'
+                }], {
+                    ...layoutBase,
+                    title: `Gráfica interactiva: u_n = ${val}^n / n!`,
+                    yaxis: { ...layoutBase.yaxis, autorange: true }
+                }, {responsive: true});
+            }
+
+            sliderE7.addEventListener('input', function() {
+                valE7.textContent = this.value;
+                actualizarGrafica7(parseFloat(this.value));
+            });
+            actualizarGrafica7(5); // Estado inicial de renderizado
+
+
+            // --- SISTEMA INTERACTIVO DE RE-RENDERIZADO PARA EJERCICIO 8 ---
+            const n8 = Array.from({length: 40}, (_, i) => i + 1);
+            const sliderE8 = document.getElementById('slider-e8');
+            const valE8 = document.getElementById('val-e8');
+
+            function actualizarGrafica8(val) {
+                const yCalculada = n8.map(n => Math.pow(n, val) / Math.pow(2, n));
+                Plotly.react('grafica-plotly-ejercicio8', [{
+                    x: n8,
+                    y: yCalculada,
+                    mode: 'markers+lines',
+                    marker: { color: '#38bdf8', size: 7 },
+                    line: { color: 'rgba(56, 189, 248, 0.4)' },
+                    name: 'u_n'
+                }], {
+                    ...layoutBase,
+                    title: `Gráfica interactiva: u_n = n^${val} / 2^n`,
+                    yaxis: { ...layoutBase.yaxis, autorange: true }
+                }, {responsive: true});
+            }
+
+            sliderE8.addEventListener('input', function() {
+                valE8.textContent = this.value;
+                actualizarGrafica8(parseFloat(this.value));
+            });
+            actualizarGrafica8(2); // Estado inicial de renderizado
         });
-    </script> 
+    </script>
 </body>
 </html>
